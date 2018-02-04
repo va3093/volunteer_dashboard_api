@@ -11,7 +11,8 @@ pipeline {
         stage ('Run tests') {
             steps {
                 sh """
-                make docker_test
+                docker build -f Dockerfile_test . -t jenkins_test
+                docker run --rm jenkins_test
                 """
             }
         }
