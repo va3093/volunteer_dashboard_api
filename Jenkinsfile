@@ -9,11 +9,20 @@ pipeline {
     stages {
 
         stage ('Run tests') {
+            agent {
+                dockerfile {
+                        filename 'Dockerfile.build'
+                        dir 'build'
+                        label 'my-defined-label'
+                        additionalBuildArgs  '--build-arg version=1.0.2'
+                }
+            }
             steps {
-                sh """
-                docker build -f Dockerfile_test . -t jenkins_test
-                docker run --rm jenkins_test
-                """
+                echo "hello"
+                // sh """
+                // docker build -f Dockerfile_test . -t jenkins_test
+                // docker run --rm jenkins_test
+                // """
             }
         }
 
