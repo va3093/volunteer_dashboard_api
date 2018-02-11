@@ -21,7 +21,7 @@ pipeline {
         stage ('deploy to docker hub') {
             
             steps {
-                withCredentials([usernameColonPassword(credentialsId: 'docker_hub_password', variable: 'DOCKER_HUB_PASSWORD')]) {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker_hub_password', usernameVariable: 'USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
                     sh """
                     sudo docker build . -t villy393/volunteer_dashboard_api:$env.BRANCH_NAME
                     # feed password into std-in so that it isn't printed in output
