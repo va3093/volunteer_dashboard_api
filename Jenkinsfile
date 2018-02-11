@@ -30,7 +30,7 @@ pipeline {
         }
 
     }
-    post {
+    // post {
         // failure {
         //     mail body: "${env.JOB_NAME} (${env.BUILD_NUMBER}) ${env.projectName} build error " +
         //                "is here: ${env.BUILD_URL}\nStarted by ${env.BUILD_CAUSE}" ,
@@ -41,5 +41,5 @@ pipeline {
         // }
         // success {
         //             }
-    }
+    // }
 }
