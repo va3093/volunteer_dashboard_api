@@ -18,13 +18,16 @@ pipeline {
             }
         }
 
-        // stage ('Lint') {
-        //     steps {
-        //         sh """
-        //         make docker_test
-        //         """
-        //     }
-        // }
+        stage ('deploy') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                }
+            }
+            steps {
+                build job: 'web-app-deploy', parameters: [[$class: 'StringParameterValue', name: 'apps', value: 'volunteer_dashboard_api']]
+            }
+        }
 
     }
     post {
@@ -36,8 +39,7 @@ pipeline {
         //          subject: "${env.projectName} ${env.JOB_NAME} (${env.BUILD_NUMBER}) build failed",
         //          to: env.emailTo
         // }
-        success {
-            build job: 'web-app-deploy', parameters: [[$class: 'StringParameterValue', name: 'apps', value: 'volunteer_dashboard_api']]
-        }
+        // success {
+        //             }
     }
 }
