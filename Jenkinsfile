@@ -18,6 +18,19 @@ pipeline {
             }
         }
 
+        stage ('deploy to docker hub') {
+            
+            steps {
+                withCredentials([usernameColonPassword(credentialsId: 'docker_hub_password', variable: 'DOCKER_HUB_PASSWORD')]) {
+                    sh """
+                    sudo docker build . -t villy393/volunteer_dashboard_api:$env.BRANCH_NAME
+                    sudo docker login -u villy393 -p $DOCKER_HUB_PASSWORD
+                    sudo docker push villy393/volunteer_dashboard_api:$env.BRANCH_NAME
+                    """
+                }
+            }
+        }
+
         stage ('deploy') {
             when {
                 expression {
