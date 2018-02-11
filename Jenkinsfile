@@ -24,7 +24,8 @@ pipeline {
                 withCredentials([usernameColonPassword(credentialsId: 'docker_hub_password', variable: 'DOCKER_HUB_PASSWORD')]) {
                     sh """
                     sudo docker build . -t villy393/volunteer_dashboard_api:$env.BRANCH_NAME
-                    sudo docker login -u villy393 -p $DOCKER_HUB_PASSWORD
+                    # feed password into std-in so that it isn't printed in output
+                    echo $DOCKER_HUB_PASSWORD | sudo docker login -u villy393 --password-stdin
                     sudo docker push villy393/volunteer_dashboard_api:$env.BRANCH_NAME
                     """
                 }
