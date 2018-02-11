@@ -25,7 +25,7 @@ pipeline {
         //     }
         // }
 
-
+    }
     post {
         // failure {
         //     mail body: "${env.JOB_NAME} (${env.BUILD_NUMBER}) ${env.projectName} build error " +
@@ -38,6 +38,5 @@ pipeline {
         success {
             build job: 'web-app-deploy', parameters: [[$class: 'StringParameterValue', name: 'apps', value: 'volunteer_dashboard_api']]
         }
-    }
     }
 }
