@@ -12,11 +12,8 @@ pipeline {
             
             steps {
                 sh """
-                whoami
-                pwd
-                sudo docker
-                docker build -f Dockerfile_test . -t jenkins_test
-                docker run --rm jenkins_test
+                sudo docker build -f Dockerfile_test . -t jenkins_test
+                sudo docker run --rm jenkins_test
                 """
             }
         }
