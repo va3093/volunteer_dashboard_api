@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps {
-                build job: 'web-app-deploy', wait: true, parameters: [[$class: 'StringParameterValue', name: 'apps', value: 'volunteer_dashboard_api']]
+                build job: 'web-app-deploy/master', wait: true, parameters: [[$class: 'StringParameterValue', name: 'apps', value: 'volunteer_dashboard_api']]
             }
         }
 
