@@ -9,19 +9,12 @@ pipeline {
     stages {
 
         stage ('Run tests') {
-            agent {
-                dockerfile {
-                        filename 'Dockerfile_test'
-                        dir './'
-                        additionalBuildArgs  '-t jenkins_test'
-                }
-            }
+            
             steps {
-                echo "hello"
-                // sh """
-                // docker build -f Dockerfile_test . -t jenkins_test
-                // docker run --rm jenkins_test
-                // """
+                sh """
+                docker build -f Dockerfile_test . -t jenkins_test
+                docker run --rm jenkins_test
+                """
             }
         }
 
