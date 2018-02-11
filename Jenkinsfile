@@ -13,7 +13,7 @@ pipeline {
                 dockerfile {
                         filename 'Dockerfile_test'
                         dir './'
-                        label 'jenkins_test'
+                        additionalBuildArgs  '-t jenkins_test'
                 }
             }
             steps {
