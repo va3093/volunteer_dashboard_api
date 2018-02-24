@@ -32,16 +32,6 @@ pipeline {
             }
         }
 
-        stage ('acceptance-tests') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-                }
-            }
-            steps {
-                build job: 'vd-acceptance-tests/master', wait: true, parameters: []
-            }
-        }
 
         stage ('deploy') {
             when {
