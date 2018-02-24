@@ -1,5 +1,5 @@
 import pytest
-from volunteer_dashboard_api.app import app
+from volunteer_dashboard_api import app
 
 
 @pytest.fixture()

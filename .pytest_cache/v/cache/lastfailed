@@ -1,0 +1,3 @@
+{
+  "tests/users/test_api.py::test_index": true
+}
